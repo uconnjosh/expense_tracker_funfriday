@@ -3,8 +3,10 @@ Expense organizer
 Create an app for organizing your expenses. Here are some user stories for you - build one at a time before moving to the next one:
 
 As a user, I want to enter an expense, so I can keep track of where I'm spending my money. I should be able to provide a description (for example, "Burgers"), an amount ($7.56), and the date I made the purchase.
-
-
+CHECK
+**************************************************************************************************
+(didn't make it past line 5. No UI :(.....) Have fun! (From Angela and Josh :)
+***************************************************************************************************
 As a user, I want to choose a single category for each expense, so I can label out where I'm spending my money.
 As a user, I want to show what percentage of my money I spent in each category, so I can know where I'm wasting all of my money.
 As a user, I want to choose multiple categories for each expense, because life is not so simple.

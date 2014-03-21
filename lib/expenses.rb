@@ -1,11 +1,12 @@
 class Expense
-  attr_reader :cost, :description, :date, :id
+  attr_reader :cost, :description, :date, :id, :amount
 
-  def initialize(description, cost, date, id=nil)
-    @description = description
-    @cost = cost
-    @date = date
-    @id = id
+  def initialize(attributes)
+    @description = attributes[:description]
+    @cost = attributes[:cost]
+    @date = attributes[:date]
+    @id = attributes[:id]
+    @amount = attributes[:amount]
   end
 
   def self.all
@@ -16,7 +17,7 @@ class Expense
       cost = result['cost'].to_f
       date = result['date']
       id = result['id'].to_i
-      expenses << Expense.new(description, cost, date, id)
+      expenses << Expense.new({:description => description, :cost => cost, :date => date, :id => id})
     end
     expenses
   end
@@ -28,5 +29,26 @@ class Expense
 
   def ==(another_expense)
     self.description == another_expense.description && self.cost == another_expense.cost && self.date == another_expense.date && self.id == another_expense.id
-    end
+  end
+
+  def update_description(description)
+    results = DB.exec("UPDATE expenses SET description = '#{@description}' WHERE id = #{@id};")
+  end
+
+  def update_amount(cost)
+    results = DB.exec("UPDATE expenses SET cost = '#{@cost}' WHERE id = #{@id};")
+  end
+
+  def update_date(date)
+    results = DB.exec("UPDATE expenses SET date  = '#{@date}' WHERE id = #{@id};")
+  end
+
+
 end
+
+
+
+
+
+
+
