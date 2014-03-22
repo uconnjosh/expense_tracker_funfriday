@@ -26,13 +26,13 @@ describe 'Expense' do
   end
   describe 'update' do
     it 'should allow you to update a description, amount, and date' do
-      test_expense = Expense.new({:description => "Shake Weight", :cost => 5, :date => "2014-03-21", :amount => 5000})
+      test_expense = Expense.new({:description => "Shake Weight", :cost => 5, :date => "2014-03-21"})
       test_expense.save
       test_expense.update_description("Shake Weight Supremo")
-      test_expense.update_amount(5000.00)
+      test_expense.update_cost(5000.00)
       test_expense.update_date('2014-05-21')
       test_expense.description.should eq ("Shake Weight")
-      test_expense.amount.should eq (5000)
+      test_expense.cost.should eq (5)
       test_expense.date.should eq ("2014-03-21")
     end
   end

@@ -1,12 +1,11 @@
 class Expense
-  attr_reader :cost, :description, :date, :id, :amount
+  attr_reader :cost, :description, :date, :id
 
   def initialize(attributes)
     @description = attributes[:description]
     @cost = attributes[:cost]
     @date = attributes[:date]
     @id = attributes[:id]
-    @amount = attributes[:amount]
   end
 
   def self.all
@@ -22,8 +21,14 @@ class Expense
     expenses
   end
 
+  # def self.create(attributes)
+  #   new_expense = Expense.new({:description => description, :cost => cost, :date => date, :id => id})
+  #   new_expense.save
+  #   new_expense
+  # end
+
   def save
-    results = DB.exec("INSERT INTO expenses (description, cost, date) VALUES ('#{@description}', #{@cost}, '#{@date}') RETURNING id;")
+    results = DB.exec("INSERT INTO expenses (description, cost, date) VALUES ('#{description}', #{cost}, '#{date}') RETURNING id;")
     @id = results.first['id'].to_i
   end
 
@@ -35,7 +40,7 @@ class Expense
     results = DB.exec("UPDATE expenses SET description = '#{@description}' WHERE id = #{@id};")
   end
 
-  def update_amount(cost)
+  def update_cost(amount)
     results = DB.exec("UPDATE expenses SET cost = '#{@cost}' WHERE id = #{@id};")
   end
 
